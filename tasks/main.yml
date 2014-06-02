@@ -1,6 +1,7 @@
 ---
 - name: Install ufw
   apt: pkg=ufw
+  tags: ["packages", "ufw"]
 
 - name: Generate ufw rules
   template: src={{ item }}.j2
@@ -12,9 +13,11 @@
     - user.rules
     - user6.rules
   notify: Restart ufw
+  tags: ["configuration", "ufw"]
 
 - name: Enable ufw
   lineinfile: dest=/etc/ufw/ufw.conf
               regexp="^ENABLED"
               line="ENABLED=yes"
   notify: Restart ufw
+  tags: ["service", "ufw"]
