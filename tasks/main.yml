@@ -48,7 +48,7 @@
     to_port: "{{ item.to_port }}"
     protocol: "{{ item.protocol | default('any') }}"
     log: "{{ item.log | default(False) }}"
-  with_items: uwf_rules
+  with_items: '{{ uwf_rules }}'
   when: configuration|changed and uwf_rules
   tags: [configuration, ufw, ufw-apply]
 
